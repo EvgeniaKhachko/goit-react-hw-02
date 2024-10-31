@@ -16,15 +16,19 @@ function App() {
   });
 
   useEffect(() => {
+    try {
+      localStorage.setItem('feedback', JSON.stringify(feedback));
+    } catch (error) {
+      console.error('Failed to save feedback:', error);
+    }
+  }, [feedback]);
+
+  useEffect(() => {
     const savedFeedback = localStorage.getItem('feedback');
     if (savedFeedback) {
       setFeedback(JSON.parse(savedFeedback));
     }
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem('feedback', JSON.stringify(feedback));
-  }, [feedback]);
 
   const updateFeedback = feedbackType => {
     setFeedback(prevFeedback => ({
@@ -40,10 +44,7 @@ function App() {
       bad: 0,
     });
   };
-  // const totalFeedback = Object.values(feedback).reduce(
-  //   (acc, value) => acc + value,
-  //   0
-  // );
+
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
 
   const positiveFeedback =
