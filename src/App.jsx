@@ -43,13 +43,7 @@ function App() {
 
   return (
     <div>
-      <Description
-        text=" <h1>Sip Happens Café</h1>
-      <p>
-        Please leave your feedback about our service by selecting one of the
-        options below.
-      </p> "
-      />
+      <Description />
       <Options
         updateFeedback={updateFeedback}
         resetFeedback={resetFeedback}
